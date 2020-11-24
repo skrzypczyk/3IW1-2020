@@ -17,8 +17,8 @@ $uri = trim($_SERVER["REQUEST_URI"], "/");
 
 $uriExploded = explode("/", $uri);
 
-$controller = empty($uriExploded[0])?"global":$uriExploded[0];
-$action = $uriExploded[1]??"default";
+$controller = ucfirst(empty($uriExploded[0])?"global":$uriExploded[0])."Controller";
+$action = ($uriExploded[1]??"default")."Action";
 
 
 //echo "Le controller c'est ".$controller;
@@ -30,3 +30,34 @@ $action = $uriExploded[1]??"default";
 //avec les bonnes vérifications
 
 //class_exists() ou method_exists(object, method_name)
+
+if( file_exists("./controllers/".$controller.".class.php")){
+
+	include "./controllers/".$controller.".class.php";
+
+	if(class_exists($controller)){
+		// $controller ====> SecurityController
+		$cObjet = new $controller();
+		if(method_exists($cObjet, $action)){
+			$cObjet->$action();
+		}else{
+			die("L'action' : ".$action." n'existe pas");
+		}
+
+	}else{
+	
+		die("La classe controller : ".$controller." n'existe pas");
+	}
+
+
+}else{
+	die("Le fichier controller : ".$controller." n'existe pas");
+}
+
+
+
+
+
+
+
+

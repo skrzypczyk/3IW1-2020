@@ -1,5 +1,5 @@
 <?php
-class globalController{
+class GlobalController{
 
 
 	public function defaultAction(){

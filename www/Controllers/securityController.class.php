@@ -1,5 +1,5 @@
 <?php
-class securityController{
+class SecurityController{
 
 
 	public function defaultAction(){
@@ -11,5 +11,10 @@ class securityController{
 		echo "Controller security action login";
 	}
 
+
+
+	public function logoutAction(){
+		echo "Controller security action logout";
+	}
 
 }
