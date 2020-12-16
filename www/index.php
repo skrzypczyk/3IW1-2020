@@ -1,24 +1,24 @@
 <?php
 
-/* 
-http://127.0.0.1/users/list
+require "Core/Router.php";
 
-$controller = "users"
-$action = "list"
 
-Par défaut 
-$controller = "global"
-$action = "default"
 
-*/
+// $uri  => /se-connecter?user_id=2 => /se-connecter
+$uriExploded = explode("?", $_SERVER["REQUEST_URI"]);
 
-// $uri  => /users/list/
-$uri = trim($_SERVER["REQUEST_URI"], "/");
+$uri = $uriExploded[0];
 
-$uriExploded = explode("/", $uri);
+$router = new Router($uri);
 
-$controller = ucfirst(empty($uriExploded[0])?"global":$uriExploded[0])."Controller";
-$action = ($uriExploded[1]??"default")."Action";
+$c = $router->getController();
+$a = $router->getAction();
+
+echo "Le controller c'est ".$c." et l'action ".$a;
+
+die();
+
+
 
 
 //echo "Le controller c'est ".$controller;
@@ -40,6 +40,7 @@ if( file_exists("./controllers/".$controller.".class.php")){
 		$cObjet = new $controller();
 		if(method_exists($cObjet, $action)){
 			$cObjet->$action();
+
 		}else{
 			die("L'action' : ".$action." n'existe pas");
 		}

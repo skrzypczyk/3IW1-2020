@@ -17,4 +17,7 @@ class SecurityController{
 		echo "Controller security action logout";
 	}
 
+
+	
+
 }
