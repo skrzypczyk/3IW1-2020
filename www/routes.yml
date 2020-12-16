@@ -1,6 +1,6 @@
 
 /:
-  controller: Global
+  controller: Main
   action: default
 
 /admin:

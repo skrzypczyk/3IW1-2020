@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Core\Security as Secu;
+
 class Security{
 
 
@@ -17,7 +19,14 @@ class Security{
 
 
 	public function logoutAction(){
-		echo "Controller security action logout";
+
+		$security = new Secu();
+		if($security->isConnected()){
+			echo "OK";
+		}else{
+			echo "NOK";
+		}
+		
 	}
 
 

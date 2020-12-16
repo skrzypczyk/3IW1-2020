@@ -4,8 +4,12 @@ namespace App;
 
 use App\Core\Router;
 
-require "Core/Router.php";
+//require "Core/Router.php";
+//require "Core/Security.php";
 
+require "Autoload.php";
+
+Autoload::register();
 
 
 // $uri  => /se-connecter?user_id=2 => /se-connecter
@@ -19,17 +23,6 @@ $c = $router->getController();
 $a = $router->getAction();
 
 
-
-
-//echo "Le controller c'est ".$controller;
-//echo " L'action c'est ".$action;
-
-
-
-//Appeler le bon controller et la bonne action en fonction de l'url
-//avec les bonnes vérifications
-
-//class_exists() ou method_exists(object, method_name)
 
 if( file_exists("./Controllers/".$c.".php")){
 
