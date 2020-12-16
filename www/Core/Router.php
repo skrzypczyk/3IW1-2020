@@ -1,4 +1,6 @@
 <?php
+namespace App\Core;
+
 class Router
 {
 	private $routes = [];
@@ -33,7 +35,7 @@ class Router
 
 
 	public function setController($controller){
-		$this->controller = $controller."Controller";
+		$this->controller = $controller;
 	}
 
 

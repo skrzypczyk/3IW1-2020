@@ -1,5 +1,8 @@
 <?php
-class SecurityController{
+
+namespace App\Controller;
+
+class Security{
 
 
 	public function defaultAction(){

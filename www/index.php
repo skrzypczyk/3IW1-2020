@@ -1,5 +1,9 @@
 <?php
 
+namespace App;
+
+use App\Core\Router;
+
 require "Core/Router.php";
 
 
@@ -14,10 +18,6 @@ $router = new Router($uri);
 $c = $router->getController();
 $a = $router->getAction();
 
-echo "Le controller c'est ".$c." et l'action ".$a;
-
-die();
-
 
 
 
@@ -31,28 +31,30 @@ die();
 
 //class_exists() ou method_exists(object, method_name)
 
-if( file_exists("./controllers/".$controller.".class.php")){
+if( file_exists("./Controllers/".$c.".php")){
 
-	include "./controllers/".$controller.".class.php";
+	include "./Controllers/".$c.".php";
+	// SecurityController =>  App\Controller\SecurityController
 
-	if(class_exists($controller)){
+	$c = "App\\Controller\\".$c;
+	if(class_exists($c)){
 		// $controller ====> SecurityController
-		$cObjet = new $controller();
-		if(method_exists($cObjet, $action)){
-			$cObjet->$action();
+		$cObjet = new $c();
+		if(method_exists($cObjet, $a)){
+			$cObjet->$a();
 
 		}else{
-			die("L'action' : ".$action." n'existe pas");
+			die("L'action' : ".$a." n'existe pas");
 		}
 
 	}else{
 	
-		die("La classe controller : ".$controller." n'existe pas");
+		die("La classe controller : ".$c." n'existe pas");
 	}
 
 
 }else{
-	die("Le fichier controller : ".$controller." n'existe pas");
+	die("Le fichier controller : ".$c." n'existe pas");
 }
 
 

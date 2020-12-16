@@ -1,5 +1,8 @@
 <?php
-class GlobalController{
+
+namespace App\Controller;
+
+class Global{
 
 
 	public function defaultAction(){
