@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Core\Security as Secu;
+use App\Core\View;
 
 class Security{
 

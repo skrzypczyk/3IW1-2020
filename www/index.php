@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Core\Router;
+use App\Core\Helpers as h;
 
 //require "Core/Router.php";
 //require "Core/Security.php";
@@ -10,6 +11,7 @@ use App\Core\Router;
 require "Autoload.php";
 
 Autoload::register();
+
 
 
 // $uri  => /se-connecter?user_id=2 => /se-connecter

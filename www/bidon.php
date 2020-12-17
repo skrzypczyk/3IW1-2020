@@ -1,44 +1,24 @@
 <?php
-//Fichier 1 controllers/Security.php
 
-namespace App\Controllers;
+//1er fichier test1.php
 
-class Security
-{
-	public function defaultAction(){
-
-	}
-}
+$var = "test";
 
 
+--------------------------------------------------
 
----------------------------------------------------------------
-//Fichier 2 core/Security.php
-
-namespace App\Core;
-
-class Security
-{
-	public function isConnected(){
-		
-	}
-}
+//2nd fichier test2.php
 
 
 
----------------------------------------------------------------
-//Fichier 3
+echo $var; //Afficher test
 
-namespace App;
 
-use App\Controller\Security as Secu;
-use App\Core\Security;
 
-require "controllers/Security.php";
-require "core/Security.php";
+--------------------------------------------------
 
-//ici je veux accéder au security du fichier 2
-$security = new Security();
-//ici je veux accéder au security du fichier 1
-$securityController = new Secu();
+//3ème fichier
 
+include "test1.php";
+
+echo $var; //Afficher test
