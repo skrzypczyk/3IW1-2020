@@ -8,6 +8,7 @@ class View
 
 	private $template; // back ou front
 	private $view; // home admin login et logout
+	private $data = [];
 
 	public function __construct( $view, $template = "front" ){
 
@@ -32,11 +33,30 @@ class View
 		}
 	}
 
+	//$view->assign("pseudo", "Prof");
+	public function assign($key, $value){
+		$this->data[$key] = $value;
+	}
+
+
 	public function __destruct(){
+		//$this->data = ["pseudo"=>"Super Prof"] ==> $pseudo = "Super Prof"
+		/*
+		foreach ($this->data as $key => $value) {
+
+			// $key = "pseudo"
+			// $$key = $"pseudo" = $pseudo
+			$$key = $value;
+		}
+		*/
+		extract($this->data);
+
 		include $this->template;
 	}
 
+
 }
+
 
 
 
