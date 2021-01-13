@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Core\Router;
+use App\Core\ConstantMaker;
 use App\Core\Helpers as h;
 
 //require "Core/Router.php";
@@ -12,6 +13,11 @@ require "Autoload.php";
 
 Autoload::register();
 
+
+new ConstantMaker();
+
+
+echo DBNAME;
 
 
 // $uri  => /se-connecter?user_id=2 => /se-connecter
