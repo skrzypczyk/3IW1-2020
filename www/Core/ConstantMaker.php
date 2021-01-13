@@ -53,7 +53,7 @@ class ConstantMaker
 				//$data["DBHOST"]="database";
 				preg_match("/([^=]*)=([^#]*)/", $line, $results);
 				if(!empty($results[1]) && !empty($results[2])){
-					$this->data[$results[1]] = $results[2];
+					$this->data[$results[1]] = trim($results[2]);
 				}
 
 

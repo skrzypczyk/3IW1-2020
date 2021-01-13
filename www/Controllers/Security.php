@@ -6,6 +6,8 @@ use App\Core\Security as Secu;
 use App\Core\View;
 use App\Core\ConstantMaker as c;
 
+use App\Models\User;
+
 class Security{
 
 
@@ -25,15 +27,18 @@ class Security{
 		
 		//Vérification des valeurs en POST
 
-
-		/*
 		$user = new User();
 		$user->setFirstname("Yves");
 		$user->setLastname("SKRZYPCZYK");
 		$user->setEmail("y.skrzypczyk@gmail.com");
 		$user->setPwd("Test1234");
 		$user->setCountry("fr");
+
 		$user->save();
+
+
+
+		/*
 
 		$log = new Log();
 		$log->user("y.skrzypczyk@gmail.com");
