@@ -35,6 +35,8 @@ class User extends Database
     public function setId($id)
     {
         $this->id = $id;
+        // double action de peupler l'objet avec ce qu'il y a en bdd
+        // https://www.php.net/manual/fr/pdostatement.fetch.php
     }
 
     /**
@@ -136,17 +138,17 @@ class User extends Database
     /**
      * @return int
      */
-    public function getIdDeleted(): int
+    public function getIsDeleted(): int
     {
-        return $this->idDeleted;
+        return $this->isDeleted;
     }
 
     /**
      * @param int $idDeleted
      */
-    public function setIdDeleted(int $idDeleted)
+    public function setIsDeleted(int $isDeleted)
     {
-        $this->idDeleted = $idDeleted;
+        $this->isDeleted = $isDeleted;
     }
 
     /**
@@ -166,4 +168,131 @@ class User extends Database
     }
 
 
+    public function formRegister(){
+        return [
+
+            "config"=>[
+                "method"=>"POST",
+                "action"=>"",
+                "id"=>"form_register",
+                "class"=>"form_builder",
+                "submit"=>"S'inscrire"
+            ],
+            "inputs"=>[
+                "firstname"=>[ 
+                    "type"=>"text",
+                    "label"=>"Votre prénom",
+                    "minLength"=>2,
+                    "maxLength"=>55,
+                    "id"=>"firstname",
+                    "class"=>"form_input",
+                    "placeholder"=>"Exemple: Yves",
+                    "error"=>"Votre prénom doit faire entre 2 et 55 caractères",
+                    "required"=>true
+                ],
+                "lastname"=>[ 
+                    "type"=>"text",
+                    "label"=>"Votre nom",
+                    "minLength"=>2,
+                    "maxLength"=>255,
+                    "id"=>"lastname",
+                    "class"=>"form_input",
+                    "placeholder"=>"Exemple: SKRZYPCZYK",
+                    "error"=>"Votre nom doit faire entre 2 et 255 caractères",
+                    "required"=>true
+                ],
+                "email"=>[ 
+                    "type"=>"email",
+                    "label"=>"Votre email",
+                    "minLength"=>8,
+                    "maxLength"=>320,
+                    "id"=>"email",
+                    "class"=>"form_input",
+                    "placeholder"=>"Exemple: nom@gmail.com",
+                    "error"=>"Votre email doit faire entre 8 et 320 caractères",
+                    "required"=>true
+                ],
+                "pwd"=>[ 
+                    "type"=>"password",
+                    "label"=>"Votre mot de passe",
+                    "minLength"=>8,
+                    "id"=>"pwd",
+                    "class"=>"form_input",
+                    "placeholder"=>"",
+                    "error"=>"Votre mot de passe doit faire au minimum 8 caractères",
+                    "required"=>true
+                ],
+                "pwdConfirm"=>[ 
+                    "type"=>"password",
+                    "label"=>"Confirmation",
+                    "confirm"=>"pwd",
+                    "id"=>"pwdConfirm",
+                    "class"=>"form_input",
+                    "placeholder"=>"",
+                    "error"=>"Votre mot de mot de passe de confirmation ne correspond pas",
+                    "required"=>true
+                ],
+                "country"=>[ 
+                    "type"=>"select",
+                    "label"=>"Votre pays",
+                    "options" => [ 
+                                    "fr"=>"France",
+                                    "ru"=>"Russie",
+                                    "pl"=>"Pologne",
+                                    ],
+                    "minLength"=>2,
+                    "maxLength"=>2,
+                    "id"=>"country",
+                    "class"=>"form_input",
+                    "placeholder"=>"Exemple: fr",
+                    "error"=>"Votre pays doit faire 2 caractères"
+                ]
+            ]
+
+        ];
+    }
+
+
+    public function formLogin(){
+        return [
+
+            "config"=>[
+                "method"=>"POST",
+                "action"=>"",
+                "id"=>"form_login",
+                "class"=>"form_builder",
+                "submit"=>"Se connecter"
+            ],
+            "inputs"=>[
+                "email"=>[ 
+                    "type"=>"email",
+                    "label"=>"Votre email",
+                    "minLength"=>8,
+                    "maxLength"=>320,
+                    "id"=>"email",
+                    "class"=>"form_input",
+                    "placeholder"=>"Exemple: nom@gmail.com",
+                    "error"=>"Votre email doit faire entre 8 et 320 caractères",
+                    "required"=>true
+                ],
+                "pwd"=>[ 
+                    "type"=>"password",
+                    "label"=>"Votre mot de passe",
+                    "minLength"=>8,
+                    "id"=>"pwd",
+                    "class"=>"form_input",
+                    "placeholder"=>"",
+                    "error"=>"Votre mot de passe doit faire au minimum 8 caractères",
+                    "required"=>true
+                ]
+            ]
+
+        ];
+    }
+
+
 }
+
+
+
+

@@ -54,7 +54,7 @@ class Database
 
 		//INSERT OU UPDATE
 		// $id == null -> INSERT SINON UPDATE
-		if( is_null($this->getId()) && is_numeric($this->getId()) ){
+		if( is_null($this->getId()) ){
 			//INSERT
 			$query = $this->pdo->prepare("INSERT INTO ".$this->table." (".
 					implode(",", array_keys($columns))
