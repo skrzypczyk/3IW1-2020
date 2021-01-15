@@ -17,8 +17,6 @@ Autoload::register();
 new ConstantMaker();
 
 
-echo DBNAME;
-
 
 // $uri  => /se-connecter?user_id=2 => /se-connecter
 $uriExploded = explode("?", $_SERVER["REQUEST_URI"]);
