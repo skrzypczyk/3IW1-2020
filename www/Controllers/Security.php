@@ -46,13 +46,13 @@ class Security{
 		$log->success(false);
 		$log->save();
 
-
 		$user = new User();
 		$user->setId(2);
 		$user->setFirstname("Toto");
 		$user->save();
 
 		*/
+
 
 	}
 

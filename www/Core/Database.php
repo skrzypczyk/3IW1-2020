@@ -6,7 +6,7 @@ class Database
 {
 
 	private $pdo;
-	private $data;
+	private $table;
 
 	public function __construct(){
 		try{
@@ -20,6 +20,9 @@ class Database
 		}catch(\Exception $e){
 			die("Erreur SQL " . $e->getMessage());
 		}
+
+		$getCalledClassExploded = explode("\\", get_called_class()); //App\Models\User
+		$this->table = DBPREFIXE.end($getCalledClassExploded);
 	}
 
 
@@ -40,11 +43,33 @@ class Database
 		);
 		*/
 
-		echo get_called_class(); //App\Models\User
+	
 
-		print_r( get_object_vars($this) ); // Array ( [firstname] => Yves [lastname] => SKRZYPCZYK [email] => y.skrzypczyk@gmail.com [pwd] => Test1234 [country] => fr [role] => 0 [status] => 0 [isDeleted] => 0 [pdo] => PDO Object ( ) )
 
-		print_r(get_class_vars(get_class())); // Array ( [pdo] => [data] => )
+		$columns = array_diff_key (
+						get_object_vars($this),
+						get_class_vars(get_class())
+					);
+
+
+		//INSERT OU UPDATE
+		// $id == null -> INSERT SINON UPDATE
+		if( is_null($this->getId()) && is_numeric($this->getId()) ){
+			//INSERT
+			$query = $this->pdo->prepare("INSERT INTO ".$this->table." (".
+					implode(",", array_keys($columns))
+				.") 
+				VALUES ( :".
+					implode(",:", array_keys($columns))
+				." );");	
+		}else{
+			//UPDATE
+
+		}
+
+		$query->execute($columns);
+		
+
 
 	}
 
